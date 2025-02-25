@@ -21,4 +21,4 @@ let maxProfit = function (prices) {
     return profit;
 };
 
-module.exports = maxProfit;
+// module.exports = maxProfit;

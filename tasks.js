@@ -2,8 +2,8 @@
 
 function consoleTriangle(size) {
     let str = '';
-    for(let i; i < size; i++) {
-        console.log(str+='#');
+    for(let i=0; i < size; i++) {
+        console.log(str+='#');       
     }
 }
 
