@@ -87,9 +87,122 @@ function countChar(s, c) {
             result++;
         }
     }
-    return result;    
+    return result;
 }
 
 function countBs2(s) {
-    return countChar(s,'B');
+    return countChar(s, 'B');
+}
+
+function range(start, end) {
+    let res = [];
+    for (let i = start; i <= end; i++) {
+        res.push(i);
+    }
+    return res;
+}
+
+function sum(arr) {
+    let sum = 0;
+    for (let item of arr) {
+        sum += item;
+    }
+    return sum;
+}
+
+function rangeStep(start, end, step = start < end ? 1 : -1) {
+    let res = [];
+    if (step >= 0) {
+        for (let i = start; i <= end; i += step) {
+            res.push(i);
+        }
+    } else {
+        for (let i = start; i >= end; i += step) {
+            res.push(i);
+        }
+    }
+    return res;
+}
+
+function reverseArray(arr) {
+    let res = [];
+    for (let i = 0; i < arr.length; i++) {
+        res.push(arr[arr.length - i - 1]);
+    }
+    return res;
+}
+
+function reverseArrayInPlace(arr) {
+    for (let i = 0; i < Math.floor(arr.length / 2); i++) {
+        let current = arr[i];
+        arr[i] = arr[arr.length - i - 1];
+        arr[arr.length - i - 1] = current;
+    }
+    return arr;
+}
+
+function arrayToList(arr) {
+    let list = null;
+    for (let i = arr.length - 1; i >= 0; i--) {
+        list = { value: arr[i], rest: list };
+    }
+    return list;
+}
+
+function listToArray(list) {
+    let array = [];
+    for (let node = list; node; node = node.rest) {
+        array.push(node.value);
+    }
+    return array;
+}
+
+function prepend(el, list) {
+    return newList = { el, rest: list };
+}
+
+function nth(list, n) {
+    while (list) {
+        if (n === 0) {
+            return list.value;
+        }
+        list = list.rest;
+        n--;
+    }
+    return undefined;
+}
+
+function nth(list, n) {
+    if (!list) return undefined;
+    else if (n === 0) {
+        return list.value;
+    } else {
+        return nth(list.rest, n - 1);
+    }
+}
+
+function deepEqual(obj1, obj2) {
+    if (obj1 === obj2) {
+        return true;
+    }
+    if (obj1 === null || obj2 === null) {
+        return false;
+    }
+
+    if (typeof (obj1) !== 'object' || typeof (obj2) !== 'object') {
+        return false;
+    }
+
+    let keysObj1 = Object.keys(obj1);
+    let keysObj2 = Object.keys(obj2);
+
+    if (keysObj1.length !== keysObj2.length) {
+        return false;
+    }
+
+    for (let key of keysObj1) {
+        if (!keysObj2.includes(key) || !deepEqual(obj1[key], obj2[key])) return false;
+    }
+
+    return true;
 }
