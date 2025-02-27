@@ -206,3 +206,20 @@ function deepEqual(obj1, obj2) {
 
     return true;
 }
+
+function customFlat(arr) {
+    return arr.reduce((flat, current) => flat.concat(current), []);
+}
+
+function customEvery(arr, func) {
+    for (let el of arr) {
+        if ( !func(el) ) {
+            return false;                        
+        } 
+    }
+    return true;
+}
+
+function customEvery2(arr, func) {
+    return !arr.some(element => !func(element));
+}
