@@ -213,9 +213,9 @@ function customFlat(arr) {
 
 function customEvery(arr, func) {
     for (let el of arr) {
-        if ( !func(el) ) {
-            return false;                        
-        } 
+        if (!func(el)) {
+            return false;
+        }
     }
     return true;
 }
@@ -223,3 +223,35 @@ function customEvery(arr, func) {
 function customEvery2(arr, func) {
     return !arr.some(element => !func(element));
 }
+
+var missingNumber = function (nums) {
+    let n = nums.length;
+    let sumAll = (1 + n) / 2 * n;
+    let sum = 0;
+    for (let i = 0; i < n; i++) {
+        sum = sum + nums[i];
+    }
+    return sumAll - sum;
+};
+
+var isValid = function (s) {
+
+    const c = new Map([
+        ['(', ')'],
+        ['{', '}'],
+        ['[', ']']
+    ])
+
+    const res = [];
+
+    for (let i = 0; i < s.length; i++) {
+        if (c.has(s[i])) {
+            res.push(c.get(s[i]));
+        } else if (!res.length || res.pop() !== s[i]) {
+            return false;
+        }
+    }
+    return res.length === 0;
+};
+
+console.log(isValid('([])'))
