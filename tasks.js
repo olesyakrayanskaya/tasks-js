@@ -254,4 +254,53 @@ var isValid = function (s) {
     return res.length === 0;
 };
 
-console.log(isValid('([])'))
+var generate = function (numRows) {
+    let result = [];
+    result.push([1]);
+    for (let i = 0; i < numRows - 1; i++) {
+        let currentRow = [1];
+        for (let j = 1; j < result[i].length; j++) {
+            currentRow.push(result[i][j - 1] + result[i][j]);
+        }
+        currentRow.push(1);
+        result.push(currentRow);
+    }
+
+    return result;
+};
+
+var fizzBuzz = function (n) {
+    const answer = [];
+    for (let i = 1; i <= n; i++) {
+        if (i % 15 === 0) {
+            answer.push('FizzBuzz');
+        } else if (i % 3 === 0) {
+            answer.push('Fizz');
+        } else if (i % 5 === 0) {
+            answer.push('Buzz');
+        } else {
+            answer.push(i.toString());
+        }
+    }
+    return answer;
+};
+
+var countPrimes = function (n) {
+    let isPrime = new Array(n).fill(true);
+    isPrime[0] = isPrime[1] = false;
+
+    for (let p = 2; p * p <= n; p++) {
+        if (isPrime[p] === true) {
+            for (let i = p * p; i <= n; i += p)
+                isPrime[i] = false;
+        }
+    }
+    let count = 0;
+    for (let i = 2; i <= n; i++) {
+        if (isPrime[i]) count++;
+    }
+    return count;
+};
+
+
+console.log(countPrimes(15));
